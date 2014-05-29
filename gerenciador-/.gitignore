@@ -1,0 +1,7 @@
+.vagrant/
+env
+.DS_Store
+db.sqlite3
+nota
+*.pyc
+.invoice.sqlite3
