@@ -1,0 +1,44 @@
+
+{% extends "base.html" %}
+
+
+{% block content %}
+  
+  <h1>Serviços</h1>
+
+  <a href="{% url 'service_add' %}">
+      <button type="button" class="btn btn-default">Cadastrar serviço</button>
+  </a>
+  
+  {% if messages %}
+    {% for message in messages %}
+      <p{% if message.tags %} class="alert alert-success"{% endif %}>{{ message }}</p>
+    {% endfor %}
+  {% endif %}
+
+  <table class="table">
+
+    <thead>
+        <tr>
+          <th>Lista de serviços<th>
+          <th><th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      {% for service in services %}
+        <tr>
+          <td>
+            <p>{{ service.description }}</p>
+          </td>
+          <td>
+            <a href="{% url 'service_edit' service.id %}">Editar serviço</a>
+          </td>
+        </tr>
+      {% endfor%}
+    </tbody>
+  </table>
+  
+{% endblock %}
+
+

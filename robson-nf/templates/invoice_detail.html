@@ -1,0 +1,358 @@
+
+<!doctype html>
+<html>
+
+  <head>
+    <title>Nota Fiscal Azion</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/invoice.css" type="text/css"/>
+
+  </head>
+
+  <body>
+
+    {% block body %}
+
+    <div id="base">
+
+
+      <div id="logo">
+        <a href="{% url 'index' %}">
+          <img src="{{ STATIC_URL }}images/logo.jpg"/>
+        </a>
+      </div> 
+
+
+      <table border="0" style="margin-top: -7px" align="right"> 
+
+        <tr>
+          <td width="100%" colspan="2">
+            <p class="orangetitle" align="center">Fatura de Prestação de Serviços</p>
+          </td>
+
+        </tr>
+
+
+        <tr>
+          <td style="width:165px;"></td>
+          <td>
+            <p align="left" class="graytext">Numero: {{ invoice.id }}</p>
+          </td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td>
+            <p align="left" class="graytext">Emissão: {{ emission_date|date:'d/m/Y' }}</p>
+          </td>
+        </tr>
+
+      </table>
+
+      <div class="clearfix">
+      </div>
+
+
+
+      <div class="space"></div>
+
+      <hr/> 
+      <div class="space2"></div>
+      <div class="space2"></div>
+      <div class="space2"></div>
+
+
+
+
+      <table class="table-invoice"> 
+
+        <tr>
+
+          <td style="width:11%">
+            <p class="orangetext">
+              Cliente
+            </p>
+          </td>
+
+          <td style="width:59%">
+            <p name="client_name" class="graytext">
+              {{ client.name }}
+            </p>
+          </td>
+
+          <td style="width:10%">
+            <p class="orangetext" >
+              CNPJ
+            </p>
+          </td>
+
+          <td style="width:30%">
+            <p name="client_cnpj" class="graytext">
+              {{ client.cnpj }}
+            </p>
+          </td>
+
+        </tr>
+      </table>
+
+
+
+      <table class="table-invoice">
+        <tr>
+
+          <td style="width:11%">
+            <p class="orangetext">
+              ID do Cliente
+            </p>
+          </td>
+
+          <td style="width:59%">
+            <p name="client_id"  class="graytext">
+              {{ client.code }}
+            </p>
+          </td>
+
+          <td style="width:10%">
+            <p class="orangetext">
+              Telefone
+            </p>
+          </td>
+
+          <td style="width:30%">
+            <p name="client_phone"  class="graytext">
+              {{ client.phone }}
+            </p>
+          </td>
+
+        </tr>
+      </table>
+
+
+      <table class="table-invoice">
+        <tr>
+
+          <td style="width:11%">
+            <p class="orangetext">
+              Endereço
+            </p>
+          </td>
+
+          <td style="width:59%" colspan="5" rowspan="2">
+            <p name="client_address"  class="graytext">
+              {{ client.address }}
+            </p>
+          </td>
+
+          <td style="width:10%">
+          </td>
+
+          <td style="width:30%">
+          </td>
+
+        </tr>
+        <tr>
+        </tr>
+
+      </table>
+
+
+
+      <div class="clearfix">
+      </div>
+
+
+      <div class="space2"></div>
+      <div class="space2"></div>
+      <div class="space2"></div>
+
+      <hr/>
+
+      <div class="space2"></div>
+      <div class="space"></div>
+ 
+
+      <table table class="table-invoice">
+
+          <thead>
+            <tr>
+              <th class="table-header-left">
+                Descrição dos serviços
+              </th>
+
+              <th class="table-header-right">
+                Preço do Serviço
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for item in items %}
+              <tr>
+                <td class="table-item-row">
+                  <p class="blacktext">
+                  {{ item.service.description }}
+                </p>
+                </td>
+                <td class="table-item-row2">
+                  R$ {{ item.value }}
+                </td>
+
+              </tr>
+            {% endfor %}
+
+            <tr>
+                <td class="table-item-row"></td>
+                <td class="table-item-row"></td>
+            </tr>
+
+            <tr>
+                <td class="table-item-row"></td>
+                <td class="table-item-row"></td>
+            </tr>
+
+            <tr>
+                <td class="table-item-row"></td>
+                <td class="table-item-row"></td>
+            </tr>
+
+            <tr>
+                <td class="table-item-row"></td>
+                <td class="table-item-row"></td>
+            </tr>
+
+            <tr>
+                <td class="table-item-row"></td>
+                <td class="table-item-row"></td>
+            </tr>
+
+            <tr>
+                <td class="table-item-row"></td>
+                <td class="table-item-row"></td>
+            </tr>
+
+            <tr>
+                <td class="table-item-row"></td>
+                <td class="table-item-row"></td>
+            </tr>
+
+            <tr>
+                <td class="table-item-row"></td>
+                <td class="table-item-row"></td>
+            </tr>
+
+            <tr>
+                <td class="table-item-row"></td>
+                <td class="table-item-row"></td>
+            </tr>
+
+            <tr>
+                <td class="table-item-row"></td>
+                <td class="table-item-row"></td>
+            </tr>
+
+          </tbody>
+
+          <tfoot>
+            <tr>
+              <td class="table-total">
+              </td>
+              <td class="table-total">
+                <p class="orangetext" align="right">
+                  <span style="margin-right:120px">Total</span> R$ {{ invoice_total_value }}
+                </p>
+              </td>
+            </tr>
+          </tfoot>
+      </table>
+
+
+      <div class="space"></div>
+      <div class="space"></div> 
+
+
+      <table table class="table-invoice">
+
+          <thead>
+            <tr>
+              <th class="table-header-left">
+                Retenções
+              </th>
+
+              <th class="table-header-right">
+                Alíquota
+              </th>
+              <th class="table-header-right">
+                Valor
+              </th>
+              </thead>
+            </tr>
+          </thead>
+
+          <tbody>
+
+              <tr>
+                <td class="table-item-row">
+                  ISSQN por substituição tributária.
+                </td>
+                <td class="table-item-row">
+                </td>
+                <td class="table-item-row2">
+                  R$ 0,00
+                </td>
+              </tr>
+              <tr>
+                <td class="table-item-row"></td>
+                <td class="table-item-row2"></td>
+                <td class="table-item-row2"></td>
+              </tr>
+              <tr>
+                <td class="table-item-row"></td>
+                <td class="table-item-row"></td>
+                <td class="table-item-row2"></td>
+              </tr>
+              <tr>
+                <td class="table-item-row"></td>
+                <td class="table-item-row"></td>
+                <td class="table-item-row2"></td>
+              </tr>
+          </tbody>
+
+          <tfoot>
+            <tr>
+              <td align="right" style="width:50%" >
+              </td>
+              <td>
+                <p class="orangetext" align="right">Valor líquido</p>
+              </td>
+              <td class="orangetext">
+                <p class="orangetext" align="right">
+                  R$ {{ invoice_total_value }}
+                </p>
+              </td>
+            </tr>
+          </tfoot>
+      </table>
+
+      <div class="space"></div>
+      <div class="space"></div>
+      <div class="space"></div>
+      <div class="space"></div>
+
+
+      <div align="center" class="graytext">
+          <p>Azion Prestação de Serviços em Tecnologia e Telecomunicação LTDA - Rua Padre Chagas, 415 - Sala 501,</p>
+          <p>Moinhos de Vento, CEP 90570-080, Porto Alegre/RS - Fone + 55 51 3012 3005</p>
+          <p>CNPJ: 12.447.998/0001-56 - Inscrição Municipal: 250.635-2-9</p>
+          <br>
+          <p style="font-weight:bold;">Este documento substitui a Nota Fiscal de Serviços. Autorizado nos termos do Processo</p>
+          <p style="font-weight:bold;">Administrativo de Regime Especial 001.1053.52.13.6,SMF/Porto Alegre/RS</p>
+      </div>
+
+      <div class="space2"></div>
+    </div>
+
+    {% endblock %}
+
+  </body>
+
+</html> 

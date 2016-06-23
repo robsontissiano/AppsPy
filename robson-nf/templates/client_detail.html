@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+
+{% block content %}
+    
+    <h1>Cadastro de Cliente</h1>
+
+    <form action="" method="POST" role="form">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label>Cliente</label>
+            <input class="form-control" name="client.name" type="text" value="{{ client.name }}">
+        </div>
+        <div class="form-group">
+            <label>ID do Cliente </label>
+            <input class="form-control" name="clientid" type="text" value="{{ client.id }}"> 
+        </div>
+        <div class="form-group">
+            <label>Endereço</label>
+            <input class="form-control" name="clientlist" type="text" value="{{ client.address }}"> 
+        </div>
+        <div class="form-group">
+            <label>E-mail</label>
+            <input class="form-control" name="clientlist" type="text" value="{{ client.email }}">
+        </div>
+
+        <div class="form-group">
+            <label>CNPJ</label>
+            {{ form.CNPJ|add_class:"form_client_data" }}
+            <input class="form-control" name="CNPJ" type="text" class="form_client_data" value="{{ client.cnpj }}"> 
+        </div>
+        <div class="form-group">
+            <label>Telefone </label>
+            <input class="form-control" name="phone" type="text" class="form_client_data" value="{{ client.phone }}">
+        </div>  
+        
+        <button type="submit" class="btn btn-default">Salvar</button>
+        
+        <a href="{% url 'invoice_add' client.id %}">
+            <button class="btn btn-default">Gerar Nota Fiscal</button>
+        </a>
+        <a href="{% url 'invoice_list' client.id %}">
+            <button class="btn btn-default">Histórico de Notas Fiscais</button>
+        </a>
+
+    </form>
+        
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    
+    <h1>Cadastro de serviço</h1>
+
+	<form action="" method="POST" role="form">
+		{% csrf_token %}
+
+		<div class="form-group">
+			<label>Serviço</label>
+			{{ form.description }}
+		</div>
+
+<!-- 		<button type="submit" class="btn btn-primary">Salvar</button> -->
+
+		<a href="{% url 'service_delete' service.id %}">
+			<button type="button" class="btn btn-danger">Excluir</button>
+		</a>
+
+	</form>
+
+{% endblock %}

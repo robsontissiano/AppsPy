@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+    
+  <h1>Histórico de Notas Fiscais</h1>
+
+  <table class="table-invoice">
+      <tbody>
+
+        <thead align="center">
+          <tr>
+            <th class="text-center">Data de emissão</th>
+            <th class="text-center">Numero da Nota Fiscal</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+
+        {% for invoice in invoices %}
+          <tr>
+            <td class="text-center">
+              {{ invoice.emission_date|date:'d/m/Y' }}
+            </td>
+            <td class="text-center">
+              {{ invoice.id }}
+            </td>
+           <td>
+              <a href="{% url 'invoice_edit' invoice.id %}">Editar</a>
+            </td>
+            <td>
+              <a href="{% url 'invoice_detail' invoice.id %}">Visualizar</a>
+            </td>
+            <td>
+              <a href="{% url 'pdf' invoice.id %}">Gerar PDF</a>
+            </td>
+          </tr>
+        {% endfor%}
+      </tbody>
+  </table>
+{% endblock %}

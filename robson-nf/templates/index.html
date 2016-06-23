@@ -1,0 +1,38 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+    {% for message in messages %}
+      <p{% if message.tags %} class="alert alert-success"{% endif %}>{{ message }}</p>
+    {% endfor %}
+
+<h1>Inicio</h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Clientes<th>
+        <th><th>
+        <th><th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for client in clients %}
+        <tr>
+          <td>
+            {{ client }}
+          </td>
+          <td><a href="{% url 'client_edit' client.id %}">Editar cadastro</a>
+          <td>
+            <a href="{% url 'invoice_add' client.id %}">Cadastrar Nota Fiscal</a>
+          </td>
+           <td>
+            <a href="{% url 'invoice_list' client.id %}">Histórico de Notas Fiscais</a>
+          </td>
+        </tr>
+      {% endfor%}
+    </tbody>
+  </table>
+  
+{% endblock %}

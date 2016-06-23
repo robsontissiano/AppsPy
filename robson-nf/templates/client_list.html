@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+  <h1>Clientes</h1>
+
+  <a href="{% url 'client_add' %}">
+      <button type="button" class="btn btn-default">Cadastrar cliente</button>
+  </a>
+  
+  {% if messages %}
+
+    {% for message in messages %}
+      <p{% if message.tags %} class="alert alert-success"{% endif %}>{{ message }}</p>
+    {% endfor %}
+    
+  {% endif %}
+
+  <table class="table">
+      <thead>
+        <tr>
+          <th>Lista de clientes<th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for client in clients %}
+        <tr>
+          <td>
+            {{ client }}
+          </td>
+          <td><a href="{% url 'client_edit' client.id %}">Editar cadastro</a>
+          <td>
+            <a href="{% url 'invoice_add' client.id %}">Cadastrar Nota Fiscal</a>
+          </td>
+           <td>
+            <a href="{% url 'invoice_list' client.id %}">Histórico de Notas Fiscais</a>
+          </td>
+        </tr>
+      {% endfor%}
+      </tbody>
+  </table>
+
+{% endblock %}
+
